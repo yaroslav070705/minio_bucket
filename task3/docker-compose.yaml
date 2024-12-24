@@ -1,0 +1,20 @@
+
+services:
+  minio:
+    image: minio/minio
+    restart: always
+    container_name: test_minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    command: server --console-address ":9001" /data
+    environment:
+      - MINIO_ROOT_USER=yar
+      - MINIO_ROOT_PASSWORD=yaroslav
+    mem_limit: 1gb
+  
+  sender:
+     image: sender    
+     restart: always
+     container_name: sender
+
